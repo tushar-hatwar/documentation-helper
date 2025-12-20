@@ -27,6 +27,7 @@ certifi = "*"
 langchain-chroma = "*"
 python-dotenv = "*"
 langchain-tavily = "*"
+langchain-text-splitters = "*"
 
 [dev-packages]
 ipykernel = "*"
