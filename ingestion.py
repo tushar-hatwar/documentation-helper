@@ -6,7 +6,7 @@ from typing import Any, Dict, List
 import certifi
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
-from langchain_classic.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
