@@ -11,6 +11,7 @@ from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_tavily import TavilyCrawl, TavilyExtract, TavilyMap
+from azure_env_embed import embeddings
 
 from logger import Colors, log_error, log_header, log_info, log_success, log_warning
 
@@ -22,16 +23,10 @@ os.environ["SSL_CERT_FILE"] = certifi.where()
 os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
 
 
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-small",
-    show_progress_bar=False,
-    chunk_size=50,
-    retry_min_seconds=10,
-)
-chroma = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
-vectorstore = PineconeVectorStore(
-    index_name="langchain-docs-2025", embedding=embeddings
-)
+vectorstore = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
+# vectorstore = PineconeVectorStore(
+#     index_name="langchain-docs-2025", embedding=embeddings
+# )
 tavily_extract = TavilyExtract()
 tavily_map = TavilyMap(max_depth=5, max_breadth=20, max_pages=1000)
 
